@@ -1,30 +1,28 @@
-'use client'
+import Link from 'next/link'
 
-export default function TodoFooterMobile({
-  handleShowAll,
-  handleShowActive,
-  handleShowCompleted,
-}) {
+export default function TodoFooterMobile() {
   return (
     <div className="md:hidden sm:flex justify-center items-center gap-3 h-12 rounded-md shadow-[0_35px_50px_-15px_rgba(194,195,214,0.50)] mt-4 bg-white text-base text-[#9495A5]">
-      <span
+      <Link
         className="hover:text-[#494C6B] cursor-pointer"
-        onClick={handleShowAll}
+        href="/todos?displayMode=all"
       >
         All
-      </span>
-      <span
+      </Link>
+
+      <Link
         className="hover:text-[#494C6B] cursor-pointer"
-        onClick={handleShowActive}
+        href="/todos?displayMode=active"
       >
         Active
-      </span>
-      <span
+      </Link>
+
+      <Link
         className="hover:text-[#494C6B] cursor-pointer"
-        onClick={handleShowCompleted}
+        href="/todos?displayMode=completed"
       >
         Completed
-      </span>
+      </Link>
     </div>
   )
 }

@@ -1,64 +1,33 @@
-'use client'
-
 import NewTodo from '@/components/NewTodo'
 import TodoFooter from '@/components/TodoFooter'
 import TodoFooterMobile from '@/components/TodoFooterMobile'
 import TodoHeader from '@/components/TodoHeader'
 import TodoList from '@/components/TodoList'
-import React from 'react'
+import { addNewTodo, removeTodo, toggleTodo } from '@/utils/actions'
+import { prisma } from '@/utils/db'
+import { revalidatePath } from 'next/cache'
 
-export default function TodosPage() {
-  const [allTodos, setAllTodos] = React.useState([])
-  const [displayMode, setDisplayMode] = React.useState<
-    'all' | 'active' | 'completed'
-  >('all')
+async function getVisibleTodos(displayMode: 'all' | 'active' | 'completed') {
+  const visibleTodos = await prisma.todo.findMany({
+    where: {
+      deleted: false,
+      ...(displayMode === 'all'
+        ? {}
+        : { completed: displayMode === 'completed' }),
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  })
 
-  const visibleTodos =
-    displayMode === 'all'
-      ? allTodos
-      : allTodos.filter((item) =>
-          displayMode === 'completed' ? item.completed : !item.completed,
-        )
+  revalidatePath('/todos')
 
-  const addNewTodo = (newTodo) => {
-    const newAllItems = [newTodo, ...allTodos]
-    setAllTodos(newAllItems)
-  }
+  return visibleTodos
+}
 
-  const handleToggle = (id, checked) => {
-    const newAllItems = allTodos.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          completed: checked,
-        }
-      }
-      return item
-    })
-    setAllTodos(newAllItems)
-  }
-
-  const handleClearCompleted = () => {
-    const newAllItems = allTodos.filter((item) => !item.completed)
-    setAllTodos(newAllItems)
-  }
-
-  const handleShowAll = () => {
-    setDisplayMode('all')
-  }
-
-  const handleShowActive = () => {
-    setDisplayMode('active')
-  }
-
-  const handleShowCompleted = () => {
-    setDisplayMode('completed')
-  }
-
-  const handleDeleteItem = (id) => {
-    const newAllItems = allTodos.filter((i) => i.id !== id)
-    setAllTodos(newAllItems)
-  }
+export default async function TodosPage({ searchParams }) {
+  const displayMode = searchParams.displayMode ?? 'all'
+  const visibleTodos = await getVisibleTodos(displayMode)
 
   return (
     <div className="md:-mt-80 sm:-mt-48 md:p-16 sm:p-6 md:pt-20 sm:pt-12 max-w-2xl mx-auto">
@@ -71,26 +40,18 @@ export default function TodosPage() {
         {/* todo items container */}
         <TodoList
           todos={visibleTodos}
-          toggleComplete={handleToggle}
-          removeTodo={handleDeleteItem}
+          toggleComplete={toggleTodo}
+          removeTodo={removeTodo}
         />
 
         {/* footer */}
         <TodoFooter
           itemsLeft={visibleTodos.filter((i) => !i.completed).length}
           displayMode={displayMode}
-          handleShowAll={handleShowAll}
-          handleShowActive={handleShowActive}
-          handleShowCompleted={handleShowCompleted}
-          handleClearCompleted={handleClearCompleted}
         />
       </div>
 
-      <TodoFooterMobile
-        handleShowAll={handleShowAll}
-        handleShowActive={handleShowActive}
-        handleShowCompleted={handleShowCompleted}
-      />
+      <TodoFooterMobile />
     </div>
   )
 }

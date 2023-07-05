@@ -4,28 +4,25 @@ import React from 'react'
 
 export default function NewTodo({ addNewTodo }) {
   const [content, setContent] = React.useState('')
+  // const [isLoading, setIsLoading] = React.useState(false)
+
   const inputRef = React.useRef<HTMLInputElement>()
 
   React.useEffect(() => {
     inputRef.current.focus()
   }, [])
 
-  const handleAddNewTodo = (e) => {
-    e.preventDefault()
-
-    const newItem = {
-      id: crypto.randomUUID(),
-      content: content,
-      completed: false,
-    }
-
+  async function handleAddNewTodo(formData: FormData) {
     setContent('')
-    addNewTodo(newItem)
+    // setIsLoading(true)
+    await addNewTodo(formData)
+    // setIsLoading(false)
   }
 
   return (
     <div className="relative md:mb-6 sm:mb-4">
-      <form onSubmit={handleAddNewTodo}>
+      {/* <div>{isLoading ? 'loading...' : 'loaded'}</div> */}
+      <form action={handleAddNewTodo}>
         <input
           type="text"
           name="content"

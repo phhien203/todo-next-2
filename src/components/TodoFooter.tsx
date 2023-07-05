@@ -1,47 +1,40 @@
-'use client'
+import Link from 'next/link'
 
-export default function TodoFooter({
-  itemsLeft,
-  displayMode,
-  handleShowAll,
-  handleShowActive,
-  handleShowCompleted,
-  handleClearCompleted,
-}) {
+export default function TodoFooter({ itemsLeft, displayMode }) {
   return (
     <div className="flex items-center justify-between px-6 py-4 text-sm text-[#9495A5] bg-white rounded-b-md">
       <span>{itemsLeft} items left</span>
 
       <span className="flex items-center gap-3 md:flex sm:hidden">
-        <span
+        <Link
           className={`hover:text-[#494C6B] cursor-pointer ${
             displayMode === 'all' ? 'text-[#3A7CFD]' : ''
           }`}
-          onClick={handleShowAll}
+          href="/todos?displayMode=all"
         >
           All
-        </span>
-        <span
+        </Link>
+
+        <Link
           className={`hover:text-[#494C6B] cursor-pointer ${
             displayMode === 'active' ? 'text-[#3A7CFD]' : ''
           }`}
-          onClick={handleShowActive}
+          href="/todos?displayMode=active"
         >
           Active
-        </span>
-        <span
+        </Link>
+
+        <Link
           className={`hover:text-[#494C6B] cursor-pointer ${
             displayMode === 'completed' ? 'text-[#3A7CFD]' : ''
           }`}
-          onClick={handleShowCompleted}
+          href="/todos?displayMode=completed"
         >
           Completed
-        </span>
+        </Link>
       </span>
-      <span
-        className="hover:text-[#494C6B] cursor-pointer"
-        onClick={handleClearCompleted}
-      >
+
+      <span className="hover:text-[#494C6B] cursor-pointer">
         Clear Completed
       </span>
     </div>
