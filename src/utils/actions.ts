@@ -24,6 +24,7 @@ export async function toggleTodo(id: string, completed: boolean) {
       completed,
     },
   })
+  revalidatePath('/todos')
 }
 
 export async function removeTodo(id: string) {
