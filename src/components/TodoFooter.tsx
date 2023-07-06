@@ -1,9 +1,15 @@
+'use client'
+
 import Link from 'next/link'
 
-export default function TodoFooter({ itemsLeft, displayMode }) {
+export default function TodoFooter({
+  itemsLeft,
+  displayMode,
+  clearCompletedTodos,
+}) {
   return (
     <div className="flex items-center justify-between px-6 py-4 text-sm text-[#9495A5] bg-white rounded-b-md">
-      <span>{itemsLeft} items left</span>
+      <span>{itemsLeft} items</span>
 
       <span className="flex items-center gap-3 md:flex sm:hidden">
         <Link
@@ -34,7 +40,10 @@ export default function TodoFooter({ itemsLeft, displayMode }) {
         </Link>
       </span>
 
-      <span className="hover:text-[#494C6B] cursor-pointer">
+      <span
+        className="hover:text-[#494C6B] cursor-pointer"
+        onClick={clearCompletedTodos}
+      >
         Clear Completed
       </span>
     </div>

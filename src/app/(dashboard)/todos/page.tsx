@@ -1,9 +1,13 @@
 import NewTodo from '@/components/NewTodo'
-import TodoFooter from '@/components/TodoFooter'
 import TodoFooterMobile from '@/components/TodoFooterMobile'
 import TodoHeader from '@/components/TodoHeader'
 import TodoList from '@/components/TodoList'
-import { addNewTodo, removeTodo, toggleTodo } from '@/utils/actions'
+import {
+  addNewTodo,
+  clearCompletedTodos,
+  removeTodo,
+  toggleTodo,
+} from '@/utils/actions'
 import { prisma } from '@/utils/db'
 import { revalidatePath } from 'next/cache'
 
@@ -40,14 +44,10 @@ export default async function TodosPage({ searchParams }) {
         {/* todo items container */}
         <TodoList
           todos={visibleTodos}
+          displayMode={displayMode}
           toggleComplete={toggleTodo}
           removeTodo={removeTodo}
-        />
-
-        {/* footer */}
-        <TodoFooter
-          itemsLeft={visibleTodos.filter((i) => !i.completed).length}
-          displayMode={displayMode}
+          clearCompletedTodos={clearCompletedTodos}
         />
       </div>
 

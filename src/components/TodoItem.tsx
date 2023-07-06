@@ -7,7 +7,7 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
   const [checked, setChecked] = React.useState<boolean>(todo.completed)
 
   async function handleToggleComplete(e) {
-    setChecked(e.target.checked)
+    setChecked((checked) => !checked)
     await toggleComplete(todo.id, e.target.checked)
   }
 
