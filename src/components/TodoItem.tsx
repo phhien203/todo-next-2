@@ -11,12 +11,8 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
     await toggleComplete(todo.id, e.target.checked)
   }
 
-  async function handleRemoveTodo(id: string) {
-    await removeTodo(id)
-  }
-
   return (
-    <div className="flex items-center gap-6 bg-white w-full h-16 px-6 py-5 text-[#494C6B] md:text-lg sm:text-sm first:rounded-t-md group">
+    <div className="flex items-center gap-6 bg-white w-full h-16 px-6 py-5 text-[#494C6B] md:text-lg sm:text-sm  group">
       <input
         type="checkbox"
         className="w-6 h-6 rounded-lg cursor-pointer"
@@ -34,7 +30,7 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
       </label>
       <span
         className="hidden group-hover:block"
-        onClick={() => handleRemoveTodo(todo.id)}
+        onClick={() => removeTodo(todo.id)}
       >
         <Image
           width={18}

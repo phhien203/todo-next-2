@@ -3,28 +3,32 @@
 import React from 'react'
 
 export default function NewTodo({ addNewTodo }) {
+  const [content, setContent] = React.useState('')
   const inputRef = React.useRef<HTMLInputElement>()
-  const formRef = React.useRef<HTMLFormElement>()
 
   React.useEffect(() => {
     inputRef.current.focus()
   }, [])
 
-  async function handleAddNewTodo(formData: FormData) {
-    await addNewTodo(formData)
-    formRef.current.reset()
+  function handleAddNewTodo(e) {
+    e.preventDefault()
+    setContent('')
+    addNewTodo(content)
   }
 
   return (
     <div className="relative md:mb-6 sm:mb-4">
-      <form ref={formRef} action={handleAddNewTodo}>
+      <form onSubmit={handleAddNewTodo}>
         <input
+          autoComplete="off"
           type="text"
           name="content"
           placeholder="Create a new todo..."
           className="bg-white w-full md:h-16 sm:h-12 rounded-md text-[#393A4B] px-6 py-5 pl-[4.5rem] md:text-lg sm:text-sm tracking-tight outline-none focus:outline-none"
           ref={inputRef}
           required={true}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
       </form>
 

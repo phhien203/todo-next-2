@@ -1,37 +1,57 @@
+'use client'
+
 import NewTodo from '@/components/NewTodo'
 import TodoFooterMobile from '@/components/TodoFooterMobile'
 import TodoHeader from '@/components/TodoHeader'
 import TodoList from '@/components/TodoList'
-import {
-  addNewTodo,
-  clearCompletedTodos,
-  removeTodo,
-  toggleTodo,
-} from '@/utils/actions'
-import { prisma } from '@/utils/db'
-import { revalidatePath } from 'next/cache'
+import React from 'react'
 
-async function getVisibleTodos(displayMode: 'all' | 'active' | 'completed') {
-  const visibleTodos = await prisma.todo.findMany({
-    where: {
-      deleted: false,
-      ...(displayMode === 'all'
-        ? {}
-        : { completed: displayMode === 'completed' }),
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
-
-  revalidatePath('/todos')
-
-  return visibleTodos
-}
-
-export default async function TodosPage({ searchParams }) {
+export default function TodosPage({ searchParams }) {
   const displayMode = searchParams.displayMode ?? 'all'
-  const visibleTodos = await getVisibleTodos(displayMode)
+  const [todos, setTodos] = React.useState([])
+
+  React.useEffect(() => {
+    fetch(`/api/todos?displayMode=${displayMode}`)
+      .then((res) => res.json())
+      .then((todos) => setTodos(todos))
+  }, [displayMode])
+
+  async function addNewTodo(content: string) {
+    const res = await fetch(`/api/todos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ content }),
+    })
+    const todo = await res.json()
+    setTodos([todo, ...todos])
+  }
+
+  async function removeTodo(id: string) {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id))
+    await fetch(`/api/todos/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  async function toggleTodo(id: string) {
+    await fetch(`/api/todos/${id}`, {
+      method: 'PUT',
+    })
+  }
+
+  async function clearCompletedTodos() {
+    const res = await fetch('/api/todos', {
+      method: 'PUT',
+    })
+
+    if (res.ok) {
+      fetch(`/api/todos?displayMode=${displayMode}`)
+        .then((res) => res.json())
+        .then((todos) => setTodos(todos))
+    }
+  }
 
   return (
     <div className="md:-mt-80 sm:-mt-48 md:p-16 sm:p-6 md:pt-20 sm:pt-12 max-w-2xl mx-auto">
@@ -43,7 +63,7 @@ export default async function TodosPage({ searchParams }) {
       <div className="rounded-md shadow-[0_35px_50px_-15px_rgba(194,195,214,0.50)]">
         {/* todo items container */}
         <TodoList
-          todos={visibleTodos}
+          todos={todos}
           displayMode={displayMode}
           toggleComplete={toggleTodo}
           removeTodo={removeTodo}

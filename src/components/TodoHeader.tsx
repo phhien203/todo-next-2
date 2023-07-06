@@ -12,7 +12,7 @@ export default function TodoHeader() {
           width={24}
           height={24}
           src="/moon.svg"
-          className="cursor-pointer"
+          className="cursor-pointer hidden"
         />
       </div>
     </header>
