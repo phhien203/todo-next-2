@@ -1,0 +1,15 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+      to bottom left,
+      hsla(217deg, 100%, 67%, 0.85) 0%,
+      hsla(280deg, 83%, 55%, 0.85) 100%
+    ),
+    url('/bg-hero-2.jpg');
+  background-size: cover;
+}
