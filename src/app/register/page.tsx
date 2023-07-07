@@ -11,12 +11,15 @@ async function createUser() {
   })
 
   if (!match) {
+    console.log('no user, create new')
     await prisma.user.create({
       data: {
         clerkId: user.id,
         email: user.emailAddresses[0].emailAddress,
       },
     })
+  } else {
+    console.log('user already existed')
   }
 
   redirect('/todos')
