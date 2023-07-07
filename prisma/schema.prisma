@@ -10,6 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clerkId String @unique
+  email   String @unique
+  todos   Todo[]
+}
+
 model Todo {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -18,4 +28,9 @@ model Todo {
   content   String
   completed Boolean @default(false)
   deleted   Boolean @default(false)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@unique([id, userId])
 }
