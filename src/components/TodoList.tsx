@@ -14,7 +14,7 @@ export default function TodoList({
   if (!todos || todos.length === 0) {
     return (
       <div>
-        <div className="flex items-center justify-center bg-white w-full h-96 px-6 py-5 text-[#9495A5] md:text-lg sm:text-sm rounded-t-md">
+        <div className="flex items-center justify-center bg-white w-full h-96 px-6 py-5 text-[#9495A5] text-sm md:text-lg rounded-t-md">
           <span>No items</span>
         </div>
 

@@ -17,14 +17,14 @@ export default function NewTodo({ addNewTodo }) {
   }
 
   return (
-    <div className="relative md:mb-6 sm:mb-4">
+    <div className="relative mb-4 md:mb-6">
       <form onSubmit={handleAddNewTodo}>
         <input
           autoComplete="off"
           type="text"
           name="content"
           placeholder="Create a new todo..."
-          className="bg-white w-full md:h-16 sm:h-12 rounded-md text-[#393A4B] px-6 py-5 pl-[4.5rem] md:text-lg sm:text-sm tracking-tight outline-none focus:outline-none"
+          className="bg-white w-full h-12 md:h-16 rounded-md text-[#393A4B] px-6 py-5 pl-[4.5rem] text-sm md:text-lg tracking-tight outline-none focus:outline-none"
           ref={inputRef}
           required={true}
           value={content}
@@ -32,7 +32,7 @@ export default function NewTodo({ addNewTodo }) {
         />
       </form>
 
-      <div className="absolute md:top-5 sm:top-[0.8rem] left-6 md:w-6 sm:w-5 md:h-6 sm:h-5 rounded-3xl border border-[#E3E4F1]"></div>
+      <div className="absolute top-[0.8rem] md:top-5 left-6 w-5 md:w-6 h-5 md:h-6 rounded-3xl border border-[#E3E4F1]"></div>
     </div>
   )
 }

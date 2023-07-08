@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
-import Image from 'next/image'
 import React from 'react'
 
 export default function TodoItem({ todo, toggleComplete, removeTodo }) {
@@ -12,7 +12,7 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
   }
 
   return (
-    <div className="flex items-center gap-6 bg-white w-full h-16 px-6 py-5 text-[#494C6B] md:text-lg sm:text-sm  group">
+    <div className="flex items-center gap-6 bg-white w-full h-12 md:h-16 px-6 py-5 text-[#494C6B] text-sm md:text-lg group">
       <input
         type="checkbox"
         className="w-6 h-6 rounded-lg cursor-pointer"
@@ -22,22 +22,20 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
       />
       <label
         htmlFor={todo.id}
-        className={`flex-1 cursor-pointer ${
+        className={`flex-1 cursor-pointer transition-all ${
           checked ? 'line-through text-[#D1D2DA]' : ''
         }`}
       >
         {todo.content}
       </label>
       <span
-        className="hidden group-hover:block"
+        className="block md:hidden group-hover:md:block"
         onClick={() => removeTodo(todo.id)}
       >
-        <Image
-          width={18}
-          height={18}
+        <img
           alt="cross icon"
           src="/cross.svg"
-          className="cursor-pointer"
+          className="cursor-pointer w-3 h-3 md:w-[1.125rem] md:h-[1.125rem]"
         />
       </span>
     </div>

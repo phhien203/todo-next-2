@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 export default function TodoHeader() {
   return (
-    <header className="flex justify-between md:h-12 sm:h-5 md:mb-10 sm:mb-10">
+    <header className="flex justify-between h-5 md:h-12 mb-10 md:mb-10">
       <Link href="/">
-        <h1 className="uppercase text-white md:text-4xl sm:text-lg font-bold tracking-widest">
+        <h1 className="uppercase text-white text-lg md:text-4xl font-bold tracking-widest">
           Todo
         </h1>
       </Link>

@@ -11,7 +11,7 @@ export default function TodoFooter({
     <div className="flex items-center justify-between px-6 py-4 text-sm text-[#9495A5] bg-white rounded-b-md">
       <span>{itemsLeft} items</span>
 
-      <span className="flex items-center gap-3 md:flex sm:hidden">
+      <span className="items-center gap-3 hidden md:flex">
         <Link
           className={`hover:text-[#494C6B] cursor-pointer ${
             displayMode === 'all' ? 'text-[#3A7CFD]' : ''
