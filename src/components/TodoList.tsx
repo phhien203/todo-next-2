@@ -31,7 +31,7 @@ export default function TodoList({
 
   return (
     <>
-      <div className="rounded-t-md divide-y divide-[#E3E4F1] h-72 md:h-96 overflow-y-auto dark:bg-[#393A4B]">
+      <div className="rounded-t-md divide-y divide-[#E3E4F1] dark:divide-[#393A4B] h-72 md:h-96 overflow-y-auto dark:bg-[#393A4B]">
         <AnimatePresence initial={false}>
           {todos.map((item) => (
             <motion.div
