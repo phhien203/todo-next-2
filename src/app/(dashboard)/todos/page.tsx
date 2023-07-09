@@ -54,7 +54,7 @@ export default function TodosPage({ searchParams }) {
   }
 
   return (
-    <div className="-mt-48 md:-mt-80 p-6 md:p-16 pt-10 md:pt-20 max-w-2xl mx-auto">
+    <div className="-mt-52 md:-mt-80 p-6 md:p-16 pt-10 md:pt-20 max-w-2xl mx-auto">
       <TodoHeader />
 
       {/* input todo */}

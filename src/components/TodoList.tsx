@@ -14,7 +14,7 @@ export default function TodoList({
   if (!todos || todos.length === 0) {
     return (
       <div>
-        <div className="flex items-center justify-center bg-white w-full h-96 px-6 py-5 text-[#9495A5] text-sm md:text-lg rounded-t-md">
+        <div className="flex items-center justify-center bg-white w-full h-72 md:h-96 px-6 py-5 text-[#9495A5] text-sm md:text-lg rounded-t-md">
           <span>No items</span>
         </div>
 
@@ -31,7 +31,7 @@ export default function TodoList({
 
   return (
     <>
-      <div className="rounded-t-md divide-y divide-[#E3E4F1] h-96 overflow-y-auto">
+      <div className="rounded-t-md divide-y divide-[#E3E4F1] h-72 md:h-96 overflow-y-auto">
         <AnimatePresence initial={false}>
           {todos.map((item) => (
             <motion.div
