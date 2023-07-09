@@ -60,7 +60,7 @@ export default function TodosPage({ searchParams }) {
       {/* input todo */}
       <NewTodo addNewTodo={addNewTodo} />
 
-      <div className="rounded-md shadow-[0_35px_50px_-15px_rgba(194,195,214,0.50)]">
+      <div className="rounded-md shadow-[0_35px_50px_-15px_rgba(194,195,214,0.50) dark:shadow-[0_35px_50px_-15px_rgba(0,0,0,0.50)] ">
         {/* todo items container */}
         <TodoList
           todos={todos}

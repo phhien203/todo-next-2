@@ -8,7 +8,7 @@ export default function TodoFooter({
   clearCompletedTodos,
 }) {
   return (
-    <div className="flex items-center justify-between px-6 py-4 text-sm text-[#9495A5] bg-white rounded-b-md">
+    <div className="flex items-center justify-between px-6 py-4 text-sm text-[#9495A5] dark:text-[#5B5E7E] bg-white dark:bg-[#25273D] rounded-b-md">
       <span>{itemsLeft} items</span>
 
       <span className="items-center gap-3 hidden md:flex">
@@ -41,7 +41,7 @@ export default function TodoFooter({
       </span>
 
       <span
-        className="hover:text-[#494C6B] cursor-pointer"
+        className="hover:text-[#494C6B] dark:hover:text-white transition-all cursor-pointer"
         onClick={clearCompletedTodos}
       >
         Clear Completed

@@ -12,10 +12,10 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
   }
 
   return (
-    <div className="flex items-center gap-6 bg-white w-full h-12 md:h-16 px-6 py-5 text-[#494C6B] text-sm md:text-lg group">
+    <div className="flex items-center gap-6 bg-white dark:bg-[#25273D] w-full h-12 md:h-16 px-6 py-5 text-[#494C6B] dark:text-[#C8CBE7] text-sm md:text-lg group">
       <input
         type="checkbox"
-        className="w-6 h-6 rounded-lg cursor-pointer"
+        className="w-6 h-6 rounded-lg cursor-pointer before:dark:bg-[#393A4B]"
         id={todo.id}
         checked={checked}
         onChange={handleToggleComplete}
@@ -23,7 +23,7 @@ export default function TodoItem({ todo, toggleComplete, removeTodo }) {
       <label
         htmlFor={todo.id}
         className={`flex-1 cursor-pointer transition-all ${
-          checked ? 'line-through text-[#D1D2DA]' : ''
+          checked ? 'line-through text-[#D1D2DA] dark:text-[#4D5067]' : ''
         }`}
       >
         {todo.content}

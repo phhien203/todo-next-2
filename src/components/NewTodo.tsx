@@ -24,7 +24,7 @@ export default function NewTodo({ addNewTodo }) {
           type="text"
           name="content"
           placeholder="Create a new todo..."
-          className="bg-white w-full h-12 md:h-16 rounded-md text-[#393A4B] px-6 py-5 pl-[4.5rem] text-sm md:text-lg tracking-tight outline-none focus:outline-none"
+          className="bg-white dark:bg-[#25273D] w-full h-12 md:h-16 rounded-md text-[#393A4B] dark:text-[#C8CBE7] px-6 py-5 pl-[4.5rem] text-sm md:text-lg tracking-tight outline-none focus:outline-none"
           ref={inputRef}
           required={true}
           value={content}

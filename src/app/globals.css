@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background: #fafafa;
+  --background-color-checkbox: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,18 +15,20 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --background: #000000;
+    --background-color-checkbox: #25273d;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #fafafa;
+  background-color: var(--background);
 }
 
 input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: var(--background-color-checkbox);
   margin: 0;
 
   font: inherit;
@@ -46,6 +50,7 @@ input[type='checkbox']::before {
   transform: scale(0);
   transition: 120ms transform ease-in-out;
   background-image: url('/checked.svg');
+  background-color: #25273d;
   background-position: center;
   background-repeat: no-repeat;
 }
