@@ -50,7 +50,6 @@ input[type='checkbox']::before {
   transform: scale(0);
   transition: 120ms transform ease-in-out;
   background-image: url('/checked.svg');
-  background-color: #25273d;
   background-position: center;
   background-repeat: no-repeat;
 }

@@ -20,6 +20,7 @@ export default function NewTodo({ addNewTodo }) {
     <div className="relative mb-4 md:mb-6">
       <form onSubmit={handleAddNewTodo}>
         <input
+          maxLength={35}
           autoComplete="off"
           type="text"
           name="content"
