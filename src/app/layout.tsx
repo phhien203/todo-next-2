@@ -1,6 +1,7 @@
-import './globals.css'
-import { Josefin_Sans } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/react'
+import { Josefin_Sans } from 'next/font/google'
+import './globals.css'
 
 const josefin = Josefin_Sans({
   subsets: ['latin'],
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={josefin.className}>{children}</body>
+        <body className={josefin.className}>
+          {children}
+          <Analytics />
+        </body>
       </html>
     </ClerkProvider>
   )
