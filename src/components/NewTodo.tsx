@@ -20,15 +20,15 @@ export default function NewTodo({ addNewTodo }) {
     <div className="relative mb-4 md:mb-6">
       <form onSubmit={handleAddNewTodo}>
         <input
-          maxLength={35}
-          autoComplete="off"
           type="text"
           name="content"
+          autoComplete="off"
           placeholder="Create a new todo..."
-          className="bg-white dark:bg-[#25273D] w-full h-12 md:h-16 rounded-md text-[#393A4B] dark:text-[#C8CBE7] px-6 py-5 pl-[4.5rem] text-sm md:text-lg tracking-tight outline-none focus:outline-none"
+          maxLength={40}
           ref={inputRef}
           required={true}
           value={content}
+          className="bg-white dark:bg-[#25273D] w-full h-12 md:h-16 rounded-md text-[#393A4B] dark:text-[#C8CBE7] px-6 py-5 pl-[4.5rem] text-sm md:text-lg tracking-tight outline-none focus:outline-none"
           onChange={(e) => setContent(e.target.value)}
         />
       </form>
